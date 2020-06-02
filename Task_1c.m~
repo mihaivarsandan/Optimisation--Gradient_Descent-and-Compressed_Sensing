@@ -1,0 +1,23 @@
+A_small=A5
+b_small=b5
+
+
+[m n]= size(A_small);
+m
+n
+
+ 
+%l1 norm minimisation
+
+f=[zeros(n,1);ones(m,1)];
+
+A = [A_small,-eye(m);-A_small,-eye(m)];
+b = [b_small; -b_small];
+
+options = optimoptions('linprog','Algorithm','dual-simplex','Display','final');
+
+tic
+[solution,fval] = linprog(f,A,b);
+toc
+solution;
+fval
